@@ -1,0 +1,30 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 main">
+            <form action="/" method="POST">
+                {% csrf_token %}
+                <div class="form-inline">
+                <input type="text" size="40" placeholder="Search" name=search class="search">
+                <input type="submit" class="btn btn-primary " value="GO"/>
+                </div>
+            </form>
+            Previous searches:<br>
+            {% if names %}
+                {% for name in names %}
+                    <a href="/search/{{name}}"> {{name}}</a>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+</body>
+</html>
